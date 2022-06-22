@@ -1,0 +1,37 @@
+<script type="text/javascript">
+    let url = `ws://${window.location.host}/{{chat_ws_url}}/`
+
+    const chatSocket = new WebSocket(url)
+
+    chatSocket.onmessage = function(e){
+        let data = JSON.parse(e.data)
+        console.log('Data:', data)
+
+        if(data.type === 'chat'){
+            let messages = document.getElementById('messages')
+            let is_sender = data.sender === '{{request.user.username}}' ? true : false;
+            let message_text = `
+            <div align="${is_sender? 'right' : 'left'}" >
+                <div class="message-bubble ${is_sender? 'my-message-bubble' : ''}" >
+                    <div>
+                        ${data.message}
+                    </div>
+                </div>
+            </div>
+            `
+            
+            messages.insertAdjacentHTML('beforeend', message_text)
+        }
+    }
+
+    let form = document.getElementById('form')
+    form.addEventListener('submit', (e)=> {
+        e.preventDefault()
+        let message = e.target.message.value 
+        chatSocket.send(JSON.stringify({
+            'message':message
+        }))
+        form.reset()
+    })
+
+</script>

@@ -1,0 +1,20 @@
+
+
+{% if sender == request.user.username %}
+<div align="right">
+    <div class="message-bubble my-message-bubble" >
+        <div>
+            {{message}} 
+        </div>
+    </div>
+ </div>
+ {% else %}
+ <div>
+    <div class="message-bubble" >
+        <div>
+            {{message}}
+        </div>
+    </div>
+ </div>
+ {% endif %}
+

@@ -1,0 +1,14 @@
+.message-bubble.my-message-bubble {
+    background-color: green;
+    color: white;
+
+}
+
+.message-bubble {
+    display: inline-block; min-width: 20%; max-width: 40%; word-wrap: break-word;
+    padding: 2% 3%;
+    margin: 2% 0%;
+
+    background-color: silver;
+    color: #000;
+}

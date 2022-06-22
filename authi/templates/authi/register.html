@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}  
+
+    <div class="container mx-auto grid">
+        <form action="" method="post">
+
+            {% csrf_token %}
+            <h2>
+                {% if register %}
+                    Register
+                {% else %}
+                    Login
+                {% endif %}
+            </h2>
+    
+            {% for field in form %}
+            <div class="row justify-content-center">
+                <div class="col">
+                    {{field.label_tag}}
+                    {{field}}
+                </div>
+    
+            </div>
+            {% endfor %}
+    
+            <div class="row justify-content-center">
+                <div class="col">
+                    {% if register %}
+                    <input type="submit" value="Register">    
+                    {% else %}
+                    <input type="submit" value="Login">    
+
+                     {% endif %}
+                </div>
+    
+            </div>
+    
+            <div class="row justify-content-center">
+                <div class="col">
+                    {% if register %}
+                    <a href="{% url 'login' %}" class="button">Login</a>
+                    {% else %}
+                    <a href="{% url 'register' %}" class="button">Register</a>
+                    {% endif %}
+                </div>
+    
+            </div>
+
+
+
+        </form>
+        
+
+    
+    </div>
+
+{% endblock content %}  

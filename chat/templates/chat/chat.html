@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/messages.css' %}">
+
+{% endblock head %}
+
+{% block content %}  
+    <div class="mx-auto w-50 gird" style="height: 1000px">
+
+        <div class="row justify-content-center m-1 p-2">
+            <div class="col-6 text-center">
+                <h1>{{chat}}</h1>
+            </div>
+
+        </div>
+
+        <div class=" row justify-content-center bg-light h-75 py-3" style="overflow-y: scroll;">
+            <div class="col-12">
+                <div id="messages" >
+                    {% for message in chat_messages %}
+                    {% include 'chat/message_bubble.html' with message=message.text sender=message.sender.username %}
+                    {% endfor %}
+                </div>
+
+            </div>
+        
+        </div>
+
+        <div class="row justify-content-center h-25">
+            <div class="col-6 text-center">
+                <form id="form">
+                    <input type="text" name="message"/>
+                </form>
+    
+            </div>
+
+        </div>
+    </div>
+   
+
+
+    
+
+{% endblock content %}  
+
+{% block extra_js %}
+
+{% include 'chat/js/chat_js.html' %}
+
+{% endblock extra_js %}
