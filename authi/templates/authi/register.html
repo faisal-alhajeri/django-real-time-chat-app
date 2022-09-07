@@ -2,50 +2,56 @@
 
 {% block content %}  
 
-    <div class="container mx-auto grid">
+    <div class="mx-auto d-flex flex-row justify-content-center align-items-center h-100">
         <form action="" method="post">
 
             {% csrf_token %}
-            <h2>
-                {% if register %}
-                    Register
-                {% else %}
-                    Login
-                {% endif %}
-            </h2>
-    
+            <div class="vw-50 p-5 bg-white rounded auth-box">
+                <h2 class="text-center p-2">
+                    {% if register %}
+                        Register
+                    {% else %}
+                        Login
+                    {% endif %}
+                </h2>
+                    
             {% for field in form %}
             <div class="row justify-content-center">
-                <div class="col">
-                    {{field.label_tag}}
+                <div class="col p-2 text-center">
+                        {{field.name}}
+
                     {{field}}
                 </div>
     
             </div>
             {% endfor %}
     
-            <div class="row justify-content-center">
-                <div class="col">
+            <div class="pt-4 row justify-content-center">
+                <div class="col-12 p-2 text-center">
                     {% if register %}
-                    <input type="submit" value="Register">    
+                    <input type="submit" class="w-50 btn btn-success " value="Register">    
                     {% else %}
-                    <input type="submit" value="Login">    
+                    <input type="submit" class="w-50 btn btn-success " value="Login">    
 
                      {% endif %}
                 </div>
-    
+                <div class="col-12 text-center">
+                    {% if register %}
+                    already have an account? <a href="{% url 'login' %}" class="button"> Login</a>
+                    {% else %}
+                    new? <a href="{% url 'register' %}" class="button">Register</a>
+                    {% endif %}
+                </div>
             </div>
     
             <div class="row justify-content-center">
-                <div class="col">
-                    {% if register %}
-                    <a href="{% url 'login' %}" class="button">Login</a>
-                    {% else %}
-                    <a href="{% url 'register' %}" class="button">Register</a>
-                    {% endif %}
-                </div>
+
     
             </div>
+            </div>
+
+            
+
 
 
 

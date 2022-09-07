@@ -6,36 +6,36 @@
 {% endblock head %}
 
 {% block content %}  
-    <div class="mx-auto w-50 gird" style="height: 1000px">
-
-        <div class="row justify-content-center m-1 p-2">
-            <div class="col-6 text-center">
-                <h1>{{chat}}</h1>
-            </div>
-
-        </div>
-
-        <div class=" row justify-content-center bg-light h-75 py-3" style="overflow-y: scroll;">
-            <div class="col-12">
-                <div id="messages" >
-                    {% for message in chat_messages %}
-                    {% include 'chat/message_bubble.html' with message=message.text sender=message.sender.username %}
-                    {% endfor %}
-                </div>
-
-            </div>
-        
-        </div>
-
-        <div class="row justify-content-center h-25">
-            <div class="col-6 text-center">
-                <form id="form">
-                    <input type="text" name="message"/>
-                </form>
+    <div class="w-100 h-100" >
+        <div class="h-100 pb-5 d-flex flex-column justify-content-around align-items-center">
+            <div class="">
+                    <h1>chatting with ({{chatter}})</h1>
     
             </div>
+    
+            <div class="chat-container d-flex flex-column justify-content-between" style="overflow-y: scroll;">
+                    <div id="messages" class="p-3">
+                        {% for message in chat_messages %}
+                        {% include 'chat/message_bubble.html' with message=message.text sender=message.sender.username %}
+                        {% endfor %}
+                    </div>
+                    <div class="">
+                        <form id="form" class="w-100 text-center chat-input-container">
+                            <input type="text" name="message" class="w-75 p-2"/>
+                            <button class="btn btn-success  text-center" type="submit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                                    <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                                  </svg>
+                            </button>
+                        </form>
+
+
+                    </div>
+            </div>
+    
 
         </div>
+
     </div>
    
 

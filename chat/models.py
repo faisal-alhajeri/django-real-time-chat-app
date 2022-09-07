@@ -18,6 +18,9 @@ class Chat(models.Model):
     def get_chat(cls, user1, user2):
         return cls.objects.filter(Q(user1=user1, user2=user2) | Q(user1=user2, user2=user1)).first()
 
+    def get_other(self, me):
+        return self.user1 if self.user2 == me else self.user2
+
     def user_is_part_of(self, user):
         return user == self.user1 or user ==self.user2
 

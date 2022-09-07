@@ -3,27 +3,36 @@
 
 {% block content %}  
 
-<div class="mx-auto container">
+<div class="mx-auto container pt-5">
 
     <div class="container">
-        <h2>Friends</h2>
-        <ul>
-            {% for friend in friends %}
-            <li>
-                {{friend}} -- <a href="{% url 'chat' friend.id %}" class="btn btn-success">Chat</a>
-            </li>
+        <h1>Friends</h1>
+        {% if friends %}
 
-            {% endfor %}
-        </ul>
+            <ul class="list-group">
+                {% for friend in friends %}
+                <li class="list-group-item  d-flex justify-content-between">
+                    <span class="fs-4 p-2">{{friend}}</span>  <a href="{% url 'chat' friend.id %}" class="btn btn-outline-success add-btn">Chat</a>
+                </li>
+
+                {% endfor %}
+            </ul>
+        {% else %}
+        <p>
+
+            you have no friends
+        </p>
+        {% endif %}
+
 
     </div>
 <hr>
     <div class="container">
         <h2>Add new Friends</h2>
-        <ul>
+        <ul class="list-group">
             {% for new_user in non_friends %}
-            <li>
-                {{new_user}} -- <a href="{% url 'add-user' new_user.id %}" class="btn btn-success">Add</a>
+            <li class="list-group-item  d-flex justify-content-between">
+                <span class="fs-4 p-2">{{new_user}} </span><a href="{% url 'add-user' new_user.id %}" class="btn btn-outline-success add-btn">Add</a>
             </li>
 
             {% endfor %}

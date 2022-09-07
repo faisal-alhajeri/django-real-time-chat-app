@@ -47,10 +47,11 @@ class ChatView(DetailView):
         ctx =  super().get_context_data(**kwargs)
         user = self.request.user
         another_user = self.get_object()
-        chat = Chat.get_chat(user, another_user)
+        chat: Chat = Chat.get_chat(user, another_user)
         ctx['chat_messages'] = chat.message_set.all()
         ctx['chat_ws_url'] = f'ws/chat/{chat.id}'
         ctx['chat'] = chat
+        ctx['chatter'] = chat.get_other(self.request.user)
         return ctx
 
 
