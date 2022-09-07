@@ -13,8 +13,8 @@
     
             </div>
     
-            <div class="chat-container d-flex flex-column justify-content-between" style="overflow-y: scroll;">
-                    <div id="messages" class="p-3">
+            <div class="chat-container d-flex flex-column justify-content-between" >
+                    <div id="messages" class="p-3" style="overflow-y: scroll;">
                         {% for message in chat_messages %}
                         {% include 'chat/message_bubble.html' with message=message.text sender=message.sender.username %}
                         {% endfor %}
