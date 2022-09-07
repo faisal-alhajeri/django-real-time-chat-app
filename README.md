@@ -1,4 +1,3 @@
-# django-real-time-chat-app
 <h1>Real Time Chat App </h1>
 <p>
 real time chat app using websockets built using Python Django Framework
